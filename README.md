@@ -72,27 +72,27 @@ while True:
     
     distance=math.sqrt(math.pow(X-GX,2))+math.sqrt(math.pow(Y-GY,2))
     print(distance)
-    
-     
+   
     if distance<=40:
         GX=random.randint(100,800)
         GY=random.randint(100,600)
         score+=1
         length+=1
-        food=True
-            
+        foods=True
+        
+    else:
+        foods=False
+        
     def longer():
         global lists
-        global length
-        global food
+        global foods
         
-    if not food:
-        del lists[0]
-       
-    for APX in lists:
-        pygame.draw.rect(SCREEN,GREEN, (*APX, Player_Width, Player_Height))
-        
-    
+        if foods==False:
+            del lists[0]
+            
+        for APX in lists:
+            pygame.draw.rect(SCREEN,GREEN, (*APX, Player_Width, Player_Height))
+            
     if Y>=660:
         Y=0
     
@@ -107,13 +107,5 @@ while True:
         X=0
         
     longer()
-        
-    
-    
-    
-  
-            
-    
-            
             
     pygame.display.update()
