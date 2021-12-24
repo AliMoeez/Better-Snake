@@ -36,6 +36,14 @@ SCREEN=pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 
 clock=pygame.time.Clock()
 
+def display_score():
+    myfont=pygame.font.SysFont("monospace",25)
+    score_shown=myfont.render("Score:"+str(score),1,(255,255,0))
+    SCREEN.blit(score_shown,(780,10))
+    
+def display_lives():
+    pass
+
 while True:
     clock.tick(FPS)
     SCREEN.fill((0,0,0))
@@ -93,6 +101,14 @@ while True:
         for APX in lists:
             pygame.draw.rect(SCREEN,GREEN, (*APX, Player_Width, Player_Height))
             
+     def show_enemy():
+        if score>=5:
+            max_top=random.randint(2,7)
+            score_show=random.randint(score,score+max_top)
+            if score_show:
+                ens=pygame.draw.rect(SCREEN,RED,pygame.Rect(EX,EY,Player_Width, Player_Height))
+                      
+            
     if Y>=660:
         Y=0
     
@@ -106,6 +122,13 @@ while True:
     if X>=860:
         X=0
         
+    show_enemy()
+    
     longer()
+    
+    display_score()
+    
+    display_lives()
+    
             
     pygame.display.update()
