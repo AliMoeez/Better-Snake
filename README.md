@@ -73,21 +73,45 @@ while True:
     distance=math.sqrt(math.pow(X-GX,2))+math.sqrt(math.pow(Y-GY,2))
     print(distance)
     
+     
     if distance<=40:
         GX=random.randint(100,800)
         GY=random.randint(100,600)
+        score+=1
+        length+=1
+        food=True
+            
+    def longer():
+        global lists
+        global length
+        global food
+        
+    if not food:
+        del lists[0]
+       
+    for APX in lists:
+        pygame.draw.rect(SCREEN,GREEN, (*APX, Player_Width, Player_Height))
+        
     
     if Y>=660:
-        Y=650
+        Y=0
     
     if Y<=0:
-        Y=10
+        Y=650
     
     if X<=0:
-        X=10
+        X=850
+        
         
     if X>=860:
-        X=850
+        X=0
+        
+    longer()
+        
+    
+    
+    
+  
             
     
             
