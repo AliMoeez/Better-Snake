@@ -101,13 +101,58 @@ while True:
         for APX in lists:
             pygame.draw.rect(SCREEN,GREEN, (*APX, Player_Width, Player_Height))
             
-     def show_enemy():
-        if score>=5:
-            max_top=random.randint(2,7)
-            score_show=random.randint(score,score+max_top)
-            if score_show:
+             
+    def show_enemy():
+        global EX, EY
+        global mov_x, mov_y
+        global max_distance, ene_sp
+        if score>1:
+            score_till_enemy=random.randint(score,score+7)
+            if score_till_enemy>score+3:
                 ens=pygame.draw.rect(SCREEN,RED,pygame.Rect(EX,EY,Player_Width, Player_Height))
-                      
+            
+                mov_x=X-EX   
+                mov_y=Y-EY
+                
+                print(mov_x)
+                print(mov_y)
+                
+            en_pl_dist=math.pow(mov_x,2)+math.pow(mov_y,2)
+            
+            if abs(en_pl_dist) > max_distance:
+                DXX=DX/2
+                DYY=DY/2
+                
+                EX+=DXX
+                EY+=DYY
+                
+            if abs(en_pl_dist) < max_distance:
+                DXX=DX+0.2
+                DYY=DY-0.2
+                
+                EX+=DXX
+                EY-=DYY
+                
+
+            if EX<=0:
+                EX=850
+
+            if EX>=860:
+                EX=0
+
+            if EY<=0:
+                EY=650
+
+            if EY>=700:
+                EY=10
+
+        dis_en=math.sqrt(math.pow(X-EX,2)+math.pow(Y-EY,2))
+        
+        if dis_en<40:
+            mov_x=0
+            mov_y=0
+            EX=10000
+            EY=10000
             
     if Y>=660:
         Y=0
